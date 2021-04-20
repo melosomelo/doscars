@@ -1,0 +1,91 @@
+.signature {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  text-align: center;
+}
+
+.signature > span {
+  text-decoration: underline;
+}
+
+.sidedrawer-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.sidedrawer-container.open {
+  width: 100%;
+  height: 100vh;
+}
+
+.sidedrawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+
+  height: 100vh;
+  width: 70%;
+  max-width: 260px;
+
+  background-color: rgba(21, 20, 20, 0.8);
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 2rem;
+
+  transform: translateX(100%);
+  transition: all 0.5s;
+}
+
+.sidedrawer-container.open > .sidedrawer {
+  transform: translateX(0);
+}
+
+.sidedrawer-container.open > .sidedrawer.close {
+  transform: translateX(100%);
+}
+
+.sidedrawer > nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 8rem;
+}
+
+.sidedrawer > nav > a {
+  margin-bottom: 5rem;
+}
+
+.sidedrawer-logo {
+  width: 40px;
+
+  margin-top: 9rem;
+}
+
+.sidedrawer > .close-icon {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+
+@media (min-width: 900px) {
+  .sidedrawer-container {
+    display: none;
+  }
+}
