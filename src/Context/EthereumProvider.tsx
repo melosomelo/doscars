@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Contract } from "web3-eth-contract";
 import Web3 from "web3";
 import abi from "../abi";
-import { EthereumContext } from "../global";
+import { EthereumContext, ContractState } from "../global";
 
 const contractAddress = "0x9DDE5de27904a53767c32fFA462CdBce6F2Faf10";
 
@@ -15,6 +15,8 @@ const Context = createContext<EthereumContext>({
   contract: null,
   account: "",
   requestAccess: () => new Promise((r) => r()),
+  participate: () => {},
+  state: "enlisting",
 });
 
 const EthereumProvider: React.FC = ({ children }) => {
@@ -24,6 +26,7 @@ const EthereumProvider: React.FC = ({ children }) => {
   const [web3, setWeb3] = useState<Web3 | null>(null);
   const [contract, setContract] = useState<Contract | null>(null);
   const [account, setAccount] = useState("");
+  const [state, setState] = useState<ContractState>("enlisting");
 
   const history = useHistory();
 
@@ -45,6 +48,7 @@ const EthereumProvider: React.FC = ({ children }) => {
         setAccessGranted(true);
 
         const contract = new web3.eth.Contract(abi, contractAddress);
+        setState(await contract.methods.state().call());
         setContract(contract);
       } catch (e) {
         console.error(
@@ -66,6 +70,14 @@ const EthereumProvider: React.FC = ({ children }) => {
     }
   }
 
+  async function participate() {
+    switch (state) {
+      case "enlisting":
+        history.push("/enlist");
+        break;
+    }
+  }
+
   return (
     <Context.Provider
       value={{
@@ -76,6 +88,8 @@ const EthereumProvider: React.FC = ({ children }) => {
         providerFound,
         loading,
         requestAccess,
+        participate,
+        state,
       }}
     >
       {children}

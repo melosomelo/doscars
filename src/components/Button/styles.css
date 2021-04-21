@@ -15,6 +15,8 @@ button {
   transition: all 0.5s;
 }
 
+/*
 button:hover {
   transform: translateY(-10px);
 }
+*/

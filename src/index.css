@@ -51,6 +51,7 @@ body {
 
   min-height: 100vh;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 a {
@@ -61,4 +62,19 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.page-title {
+  font-size: 6rem;
+  font-weight: 100;
+  color: var(--main-color);
+
+  text-align: center;
+
+  margin-bottom: 2rem;
+}
+
+.page-subtitle {
+  font-size: 2.5rem;
+  font-weight: 300;
 }

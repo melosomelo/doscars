@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import logoSVG from "../../assets/images/logo.svg";
 import Button from "../../components/Button/Button";
+import { Context } from "../../Context/EthereumProvider";
 
 import "./styles.css";
 
 const Home: React.FC = () => {
+  const { participate } = useContext(Context);
   return (
     <main className="home">
       <div className="main-title">
@@ -12,7 +14,7 @@ const Home: React.FC = () => {
         <img src={logoSVG} alt="D'oscars' logo" />
       </div>
       <p>Decentralized voting for movies</p>
-      <Button>Participate</Button>
+      <Button onClick={participate}>Participate</Button>
     </main>
   );
 };

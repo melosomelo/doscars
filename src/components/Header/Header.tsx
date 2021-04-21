@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import Button from "../Button/Button";
+import { Context } from "../../Context/EthereumProvider";
 
 import logoSVG from "../../assets/images/logo.svg";
 import togglerSVG from "../../assets/images/toggler.svg";
@@ -13,15 +14,16 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ openSidedrawer }) => {
+  const { participate } = useContext(Context);
   return (
     <header>
-      <img src={logoSVG} alt="D'oscars' logo" />
+      <Link to="/">
+        <img src={logoSVG} alt="D'oscars' logo" />
+      </Link>
       <nav>
-        <Link to="enlisted">Enlisted Movies</Link>
-        <Link to="enlisted">Ranking</Link>
-        <Link to="participate">
-          <Button>Participate</Button>
-        </Link>
+        <Link to="/enlisted">Enlisted Movies</Link>
+        <Link to="/ranking">Ranking</Link>
+        <Button onClick={participate}>Participate</Button>
       </nav>
       <img
         src={togglerSVG}

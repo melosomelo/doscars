@@ -6,6 +6,8 @@ import { Context } from "./Context/EthereumProvider";
 import Home from "./pages/Home/Home";
 import NoProvider from "./pages/NoProvider/NoProvider";
 import NoAccess from "./pages/NoAccess/NoAccess";
+import Enlist from "./pages/Enlist/Enlist";
+
 import { EthereumContext } from "./global";
 
 interface CustomRouteProps extends RouteProps {
@@ -18,9 +20,13 @@ const CustomRoute: React.FC<CustomRouteProps> = ({
   requiresProvider,
   ...rest
 }) => {
-  const { accessGranted, providerFound } = useContext(
+  const { accessGranted, providerFound, loading } = useContext(
     Context
   ) as EthereumContext;
+
+  if (loading) {
+    return <h1>loadig...</h1>;
+  }
 
   if (requiresProvider && !providerFound) {
     return <Redirect to="no-provider" />;
@@ -44,6 +50,9 @@ const Routes: React.FC = () => {
       </CustomRoute>
       <CustomRoute exact path="/no-access">
         <NoAccess />
+      </CustomRoute>
+      <CustomRoute exact path="/enlist" requiresAccess requiresProvider>
+        <Enlist />
       </CustomRoute>
     </Switch>
   );
