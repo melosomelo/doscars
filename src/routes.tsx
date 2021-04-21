@@ -4,6 +4,8 @@ import { Route, Switch, Redirect, RouteProps } from "react-router-dom";
 import { Context as EthereumContext } from "./Context/EthereumProvider";
 
 import Home from "./pages/Home/Home";
+import NoProvider from "./pages/NoProvider/NoProvider";
+import NoAccess from "./pages/NoAccess/NoAccess";
 
 interface CustomRouteProps extends RouteProps {
   requiresProvider?: boolean;
@@ -19,11 +21,12 @@ const CustomRoute: React.FC<CustomRouteProps> = ({
     EthereumContext
   ) as EthereumContext;
 
-  if (requiresProvider && !providerFound) {
-    return <Redirect to="no-provider" />;
-  }
   if (requiresAccess && !accessGranted) {
     return <Redirect to="/no-access" />;
+  }
+
+  if (requiresProvider && !providerFound) {
+    return <Redirect to="no-provider" />;
   }
 
   return <Route {...rest} />;
@@ -32,10 +35,15 @@ const CustomRoute: React.FC<CustomRouteProps> = ({
 const Routes: React.FC = () => {
   return (
     <Switch>
-      <CustomRoute exact path="/" requiresProvider requiresAccess>
+      <CustomRoute exact path="/" requiresAccess requiresProvider>
         <Home />
       </CustomRoute>
-      <CustomRoute></CustomRoute>
+      <CustomRoute exact path="/no-provider">
+        <NoProvider />
+      </CustomRoute>
+      <CustomRoute exact path="/no-access">
+        <NoAccess />
+      </CustomRoute>
     </Switch>
   );
 };
