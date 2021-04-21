@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { Route, Switch, Redirect, RouteProps } from "react-router-dom";
 
-import { Context as EthereumContext } from "./Context/EthereumProvider";
+import { Context } from "./Context/EthereumProvider";
 
 import Home from "./pages/Home/Home";
 import NoProvider from "./pages/NoProvider/NoProvider";
 import NoAccess from "./pages/NoAccess/NoAccess";
+import { EthereumContext } from "./global";
 
 interface CustomRouteProps extends RouteProps {
   requiresProvider?: boolean;
@@ -18,15 +19,15 @@ const CustomRoute: React.FC<CustomRouteProps> = ({
   ...rest
 }) => {
   const { accessGranted, providerFound } = useContext(
-    EthereumContext
+    Context
   ) as EthereumContext;
-
-  if (requiresAccess && !accessGranted) {
-    return <Redirect to="/no-access" />;
-  }
 
   if (requiresProvider && !providerFound) {
     return <Redirect to="no-provider" />;
+  }
+
+  if (requiresAccess && !accessGranted) {
+    return <Redirect to="/no-access" />;
   }
 
   return <Route {...rest} />;

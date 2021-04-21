@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Redirect } from "react-router-dom";
+import { Context } from "../../Context/EthereumProvider";
 import "./styles.css";
 
 const NoProvider: React.FC = () => {
+  const { providerFound } = useContext(Context);
+
+  if (providerFound) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <main className="error-message">
       <p>We were not able to find any web3 providers in your browser</p>
