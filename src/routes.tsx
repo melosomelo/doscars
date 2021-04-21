@@ -32,7 +32,7 @@ const CustomRoute: React.FC<CustomRouteProps> = ({
 const Routes: React.FC = () => {
   return (
     <Switch>
-      <CustomRoute exact path="/">
+      <CustomRoute exact path="/" requiresProvider requiresAccess>
         <Home />
       </CustomRoute>
       <CustomRoute></CustomRoute>
