@@ -40,7 +40,7 @@ const MovieModal: React.FC<Props> = ({ movieID, closeModal }) => {
     })();
 
     return () => document.querySelector("body")?.classList.remove("no-scroll");
-  }, []);
+  }, [movieID]);
   return (
     <div className="movie-modal-backdrop">
       {loading && (

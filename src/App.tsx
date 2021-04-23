@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { EthereumProvider } from "./Context/EthereumProvider";
 import Layout from "./components/Layout/Layout";

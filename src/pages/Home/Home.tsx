@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import logoSVG from "../../assets/images/logo.svg";
 import Button from "../../components/Button/Button";
 import { Context } from "../../Context/EthereumProvider";

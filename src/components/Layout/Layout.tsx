@@ -5,8 +5,6 @@ import clsx from "clsx";
 import Header from "../Header/Header";
 import Button from "../Button/Button";
 
-import sleep from "../../utils/sleep";
-
 import logoSVG from "../../assets/images/logo.svg";
 import closeSVG from "../../assets/images/close.svg";
 
@@ -15,7 +13,6 @@ import "./styles.css";
 const Layout: React.FC = ({ children }) => {
   const [showSidedrawer, setShowSidedrawer] = useState(false);
   const sidedrawerRef = useRef<HTMLDivElement | null>(null);
-  const backdropRef = useRef<HTMLDivElement | null>(null);
 
   const openSidedrawer = () => {
     sidedrawerRef.current?.classList.remove("close");
