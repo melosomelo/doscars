@@ -1,0 +1,15 @@
+.img404 {
+  min-width: 200px;
+  min-height: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #c4c4c4;
+}
+
+.img404 > img {
+  display: block;
+  width: 110px;
+}

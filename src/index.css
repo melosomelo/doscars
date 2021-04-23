@@ -9,6 +9,17 @@
   }
 }
 
+@keyframes fadeFromLeft {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 @keyframes float {
   from,
   to {
@@ -26,6 +37,20 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+*.fadeFromTop {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeFromTop 0.5s;
+  animation-fill-mode: forwards;
+}
+
+*.fadeFromLeft {
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: fadeFromLeft 0.5s;
+  animation-fill-mode: forwards;
 }
 
 :root {
@@ -52,6 +77,10 @@ body {
   min-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+body.no-scroll {
+  overflow-y: hidden;
 }
 
 a {

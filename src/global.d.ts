@@ -13,3 +13,33 @@ export interface EthereumContext {
   requestAccess: () => Promise<void>;
   participate: () => void;
 }
+
+export interface Movie {
+  id: number;
+  overview: string;
+  title: string;
+  poster_path: string;
+}
+
+// there are a lot more of fields, but these are the ones that
+// matter here
+export interface MovieDetailed extends Movie {
+  genres: {
+    id: number;
+    name: string;
+  }[];
+  release_date: string; //2020-01-01
+  credits: {
+    crew: {
+      name: string;
+      job: string;
+    }[];
+  };
+}
+
+export interface SearchQueryResult {
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: Movie[];
+}

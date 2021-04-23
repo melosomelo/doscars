@@ -8,6 +8,8 @@ import NoProvider from "./pages/NoProvider/NoProvider";
 import NoAccess from "./pages/NoAccess/NoAccess";
 import Enlist from "./pages/Enlist/Enlist";
 
+import Loading from "./components/Loading/Loading";
+
 import { EthereumContext } from "./global";
 
 interface CustomRouteProps extends RouteProps {
@@ -25,7 +27,18 @@ const CustomRoute: React.FC<CustomRouteProps> = ({
   ) as EthereumContext;
 
   if (loading) {
-    return <h1>loadig...</h1>;
+    return (
+      <div
+        style={{
+          position: "absolute",
+          transform: "translate(-50%, -50%)",
+          left: "50%",
+          top: "50%",
+        }}
+      >
+        <Loading />
+      </div>
+    );
   }
 
   if (requiresProvider && !providerFound) {
