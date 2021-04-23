@@ -87,6 +87,7 @@
 .movie-modal-text {
   display: flex;
   flex-direction: column;
+  min-height: 300px;
 }
 
 .movie-modal-text span {

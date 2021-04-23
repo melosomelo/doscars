@@ -109,10 +109,12 @@ const MovieModal: React.FC<Props> = ({ movieID, closeModal }) => {
             <p>{movie.overview}</p>
             <div className="genres-wrapper">
               {movie.genres.map((genre) => (
-                <div className="genre">{genre.name}</div>
+                <div className="genre" key={genre.id}>
+                  {genre.name}
+                </div>
               ))}
             </div>
-            <Button style={{ marginLeft: "auto", marginTop: "3rem" }}>
+            <Button style={{ marginLeft: "auto", marginTop: "auto" }}>
               Rhey
             </Button>
           </div>
