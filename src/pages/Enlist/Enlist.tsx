@@ -71,6 +71,7 @@ export default function Enlist() {
             <MovieModal
               closeModal={() => setShowModal(false)}
               movieID={selectedMovie}
+              showAction
             />
           )}
           <div className="search-results-wrapper">

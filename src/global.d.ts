@@ -12,6 +12,15 @@ export interface EthereumContext {
   state: ContractState;
   requestAccess: () => Promise<void>;
   participate: () => void;
+  enlistMovie: (number, string) => Promise<void>;
+}
+
+type variant = "error" | "success";
+
+export interface SnackbarContext {
+  hasMessage: boolean;
+  value: string;
+  setMessage: (string: string, variant?: variant) => void;
 }
 
 export interface Movie {

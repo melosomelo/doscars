@@ -1,9 +1,10 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Contract } from "web3-eth-contract";
 import Web3 from "web3";
 import abi from "../abi";
 import { EthereumContext, ContractState } from "../global";
+import { Context as ErrorContext } from "./SnackbarProvider";
 
 const contractAddress = "0x9DDE5de27904a53767c32fFA462CdBce6F2Faf10";
 
@@ -17,6 +18,7 @@ const Context = createContext<EthereumContext>({
   requestAccess: () => new Promise((r) => r()),
   participate: () => {},
   state: "enlisting",
+  enlistMovie: (n, s) => new Promise((r) => r()),
 });
 
 const EthereumProvider: React.FC = ({ children }) => {
@@ -27,6 +29,7 @@ const EthereumProvider: React.FC = ({ children }) => {
   const [contract, setContract] = useState<Contract | null>(null);
   const [account, setAccount] = useState("");
   const [state, setState] = useState<ContractState>("enlisting");
+  const { setMessage } = useContext(ErrorContext);
 
   const history = useHistory();
 
@@ -78,6 +81,19 @@ const EthereumProvider: React.FC = ({ children }) => {
     }
   }
 
+  async function enlistMovie(movieID: number, posterPath: string) {
+    try {
+      await (contract as Contract).methods
+        .enlistMovie(movieID, posterPath)
+        .send({ from: account, value: "100000000000000000" });
+      setMessage("Movie was enlisted!", "success");
+    } catch (e) {
+      setMessage(
+        "It was not possible to enlist this movie. It maybe have been already enlisted."
+      );
+    }
+  }
+
   return (
     <Context.Provider
       value={{
@@ -90,6 +106,7 @@ const EthereumProvider: React.FC = ({ children }) => {
         requestAccess,
         participate,
         state,
+        enlistMovie,
       }}
     >
       {children}

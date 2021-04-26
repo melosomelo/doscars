@@ -96,24 +96,14 @@ main.enlist > .search-wrapper > .input-wrapper {
 }
 
 .search-results::-webkit-scrollbar {
-  width: 4px;
+  height: 4px;
 }
 
 .search-results::-webkit-scrollbar-track {
   color: rgba(255, 255, 255, 0.4);
 }
 
-::-webkit-scrollbar {
-  height: 4px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
+.search-results::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.6);
 }
 

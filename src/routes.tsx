@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import NoProvider from "./pages/NoProvider/NoProvider";
 import NoAccess from "./pages/NoAccess/NoAccess";
 import Enlist from "./pages/Enlist/Enlist";
+import EnlistedMovies from "./pages/EnlistedMovies/EnlistedMovies";
 
 import Loading from "./components/Loading/Loading";
 
@@ -66,6 +67,9 @@ const Routes: React.FC = () => {
       </CustomRoute>
       <CustomRoute exact path="/enlist" requiresAccess requiresProvider>
         <Enlist />
+      </CustomRoute>
+      <CustomRoute exact path="/enlisted" requiresAccess requiresProvider>
+        <EnlistedMovies />
       </CustomRoute>
     </Switch>
   );

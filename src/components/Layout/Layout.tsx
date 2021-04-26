@@ -1,9 +1,11 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 import clsx from "clsx";
 
 import Header from "../Header/Header";
 import Button from "../Button/Button";
+
+import { Context } from "../../Context/EthereumProvider";
 
 import logoSVG from "../../assets/images/logo.svg";
 import closeSVG from "../../assets/images/close.svg";
@@ -13,6 +15,8 @@ import "./styles.css";
 const Layout: React.FC = ({ children }) => {
   const [showSidedrawer, setShowSidedrawer] = useState(false);
   const sidedrawerRef = useRef<HTMLDivElement | null>(null);
+  const { participate } = useContext(Context);
+  const history = useHistory();
 
   const openSidedrawer = () => {
     sidedrawerRef.current?.classList.remove("close");
@@ -39,9 +43,16 @@ const Layout: React.FC = ({ children }) => {
           />
           <img src={logoSVG} alt="D'oscars' logo" className="sidedrawer-logo" />
           <nav>
-            <Link to="enlisted">Enlisted movies</Link>
-            <Link to="enlisted">Ranking</Link>
-            <Button>Participate</Button>
+            <Link to="/enlisted">Enlisted movies</Link>
+            <Link to="/ranking">Ranking</Link>
+            <Button
+              onClick={() => {
+                closeSidedrawer();
+                participate();
+              }}
+            >
+              Participate
+            </Button>
           </nav>
         </div>
       </div>

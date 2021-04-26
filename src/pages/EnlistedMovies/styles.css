@@ -1,0 +1,22 @@
+.enlisted-movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width: 95%;
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem;
+}
+
+.enlisted-movies .movie-poster {
+  width: 200px;
+  margin-right: 5rem;
+  margin-bottom: 3rem;
+}
+
+.enlisted-movies.loading > .movie-poster {
+  visibility: hidden;
+  position: absolute;
+}

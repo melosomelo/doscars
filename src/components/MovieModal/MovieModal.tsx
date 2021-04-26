@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { MovieDetailed } from "../../global";
 import api, { posterBasePath } from "../../api";
 import Loading from "../../components/Loading/Loading";
 import closeSVG from "../../assets/images/close.svg";
 import Button from "../../components/Button/Button";
+import { Context } from "../../Context/EthereumProvider";
 import clsx from "clsx";
 
 import "./styles.css";
@@ -12,9 +13,10 @@ import Img404 from "../Img404/Img404";
 interface Props {
   movieID: number;
   closeModal: () => void;
+  showAction?: boolean;
 }
 
-const MovieModal: React.FC<Props> = ({ movieID, closeModal }) => {
+const MovieModal: React.FC<Props> = ({ movieID, closeModal, showAction }) => {
   const [movie, setMovie] = useState<MovieDetailed>({
     title: "",
     release_date: "",
@@ -28,6 +30,7 @@ const MovieModal: React.FC<Props> = ({ movieID, closeModal }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
+  const { state, enlistMovie } = useContext(Context);
 
   useEffect(() => {
     document.querySelector("body")?.classList.add("no-scroll");
@@ -41,6 +44,12 @@ const MovieModal: React.FC<Props> = ({ movieID, closeModal }) => {
 
     return () => document.querySelector("body")?.classList.remove("no-scroll");
   }, [movieID]);
+
+  async function onButtonClick() {
+    if (state === "enlisting") {
+      await enlistMovie(movieID, movie.poster_path);
+    }
+  }
   return (
     <div className="movie-modal-backdrop">
       {loading && (
@@ -61,7 +70,7 @@ const MovieModal: React.FC<Props> = ({ movieID, closeModal }) => {
         role="button"
         style={{
           cursor: "pointer",
-          position: "absolute",
+          position: "fixed",
           top: "8px",
           right: "8px",
           width: "50px",
@@ -114,9 +123,14 @@ const MovieModal: React.FC<Props> = ({ movieID, closeModal }) => {
                 </div>
               ))}
             </div>
-            <Button style={{ marginLeft: "auto", marginTop: "auto" }}>
-              Rhey
-            </Button>
+            {showAction && (
+              <Button
+                style={{ marginLeft: "auto", marginTop: "4rem" }}
+                onClick={onButtonClick}
+              >
+                Enlist
+              </Button>
+            )}
           </div>
         </div>
       )}
