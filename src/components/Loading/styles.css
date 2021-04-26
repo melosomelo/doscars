@@ -16,6 +16,13 @@
   align-items: center;
 }
 
+.loading-wrapper.centered {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .ball {
   width: 27px;
   height: 27px;

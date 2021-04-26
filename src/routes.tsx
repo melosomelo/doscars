@@ -8,6 +8,8 @@ import NoProvider from "./pages/NoProvider/NoProvider";
 import NoAccess from "./pages/NoAccess/NoAccess";
 import Enlist from "./pages/Enlist/Enlist";
 import EnlistedMovies from "./pages/EnlistedMovies/EnlistedMovies";
+import Ranking from "./pages/Ranking/Ranking";
+import Feed from "./pages/Feed/Feed";
 
 import Loading from "./components/Loading/Loading";
 
@@ -70,6 +72,12 @@ const Routes: React.FC = () => {
       </CustomRoute>
       <CustomRoute exact path="/enlisted" requiresAccess requiresProvider>
         <EnlistedMovies />
+      </CustomRoute>
+      <CustomRoute exact path="/ranking" requiresAccess requiresProvider>
+        <Ranking />
+      </CustomRoute>
+      <CustomRoute exact path="/feed" requiresAccess requiresProvider>
+        <Feed />
       </CustomRoute>
     </Switch>
   );

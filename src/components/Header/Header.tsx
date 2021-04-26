@@ -21,6 +21,7 @@ const Header: React.FC<Props> = ({ openSidedrawer }) => {
         <img src={logoSVG} alt="D'oscars' logo" />
       </Link>
       <nav>
+        <Link to="/feed">Feed</Link>
         <Link to="/enlisted">Enlisted Movies</Link>
         <Link to="/ranking">Ranking</Link>
         <Button onClick={participate}>Participate</Button>
