@@ -1,10 +1,13 @@
 # Doscars 🎥
 
-<img src = "https://img.shields.io/badge/-typescript-green?logo=typescript&style=for-the-badge&logoColor=white&color=3178C6">
+<div style = "display: flex; align-items: center;">
+  <img src = "https://img.shields.io/badge/-typescript-green?logo=typescript&style=for-the-badge&logoColor=white&color=3178C6">
 
-<img src = "https://img.shields.io/badge/-solidity-green?logo=solidity&style=for-the-badge&logoColor=white&color=363636">
+  <img src = "https://img.shields.io/badge/-solidity-green?logo=solidity&style=for-the-badge&logoColor=white&color=363636">
 
-<img src="https://img.shields.io/badge/-react-green?logo=react&style=for-the-badge&logoColor=white&color=61DAFB">
+  <img src="https://img.shields.io/badge/-react-green?logo=react&style=for-the-badge&logoColor=white&color=61DAFB">
+
+</div>
 
 _Decentralized movie voting system implemented with React and Solidity._
 
