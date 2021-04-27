@@ -16,7 +16,7 @@
 }
 
 .sidedrawer-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 0;
@@ -26,7 +26,7 @@
 
 .sidedrawer-container.open {
   width: 100%;
-  height: 100vh;
+  height: max(100vh, 100vw);
 }
 
 .sidedrawer {
@@ -35,7 +35,7 @@
   right: 0;
   z-index: 100;
 
-  height: 100vh;
+  min-height: max(100vh, 100vw);
   width: 70%;
   max-width: 260px;
 

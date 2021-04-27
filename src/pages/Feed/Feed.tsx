@@ -19,6 +19,9 @@ const Feed: React.FC = () => {
       if (pastEvents) {
         const finalPastEvents: EventData[] = [];
         for (let event of pastEvents) {
+          if (!["MovieEnlisted", "Vote"].includes(event.event)) {
+            continue;
+          }
           const {
             data: { title },
           } = await api.get(`/movie/${event.returnValues.movieID}`);
@@ -36,6 +39,16 @@ const Feed: React.FC = () => {
           data: { title },
         } = await api.get(`/movie/${e.returnValues.movieID}`);
         console.log("eai");
+        setEvents((prevState) => [
+          { ...e, returnValues: { ...e.returnValues, title } },
+          ...prevState,
+        ]);
+      });
+
+      contract?.events.Vote().on("data", async (e: EventData) => {
+        const {
+          data: { title },
+        } = await api.get(`/movie/${e.returnValues.movieID}`);
         setEvents((prevState) => [
           { ...e, returnValues: { ...e.returnValues, title } },
           ...prevState,
@@ -66,11 +79,15 @@ const Feed: React.FC = () => {
                   .sort((a, b) => b.blockNumber - a.blockNumber)
                   .map((e, index) => (
                     <tr
-                      key={`${e.returnValues.enlister}-${e.returnValues.movieID}-${e.event}`}
+                      key={`${
+                        e.returnValues.enlister || e.returnValues.voter
+                      }-${e.returnValues.movieID}-${e.event}-${index}`}
                       className="fadeFromTop"
                       style={{ animationDelay: `${0.1 * index}s` }}
                     >
-                      <td className="enlister">{e.returnValues.enlister}</td>
+                      <td className="enlister">
+                        {e.returnValues.enlister || e.returnValues.voter}
+                      </td>
                       <td className="type">{e.event}</td>
                       <td className="movie">{e.returnValues.title}</td>
                     </tr>

@@ -69,4 +69,5 @@
 
   background-color: white;
   animation: grow 3s linear;
+  animation-fill-mode: forwards;
 }

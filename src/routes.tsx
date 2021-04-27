@@ -10,6 +10,8 @@ import Enlist from "./pages/Enlist/Enlist";
 import EnlistedMovies from "./pages/EnlistedMovies/EnlistedMovies";
 import Ranking from "./pages/Ranking/Ranking";
 import Feed from "./pages/Feed/Feed";
+import Wfw from "./pages/Wfw/Wfw";
+import Over from "./pages/Over/Over";
 
 import Loading from "./components/Loading/Loading";
 
@@ -78,6 +80,12 @@ const Routes: React.FC = () => {
       </CustomRoute>
       <CustomRoute exact path="/feed" requiresAccess requiresProvider>
         <Feed />
+      </CustomRoute>
+      <CustomRoute exact path="/wfw" requiresAccess requiresProvider>
+        <Wfw />
+      </CustomRoute>
+      <CustomRoute exact path="/over" requiresAccess requiresProvider>
+        <Over />
       </CustomRoute>
     </Switch>
   );

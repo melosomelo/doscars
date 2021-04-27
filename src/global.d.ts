@@ -13,6 +13,7 @@ export interface EthereumContext {
   requestAccess: () => Promise<void>;
   participate: () => void;
   enlistMovie: (number, string) => Promise<void>;
+  voteForMovie: (id: number) => Promise<void>;
 }
 
 type variant = "error" | "success";
@@ -46,6 +47,16 @@ export interface MovieDetailed extends Movie {
   };
 }
 
+// how a movie is stored in the blockchain
+export interface BlockchainMovie {
+  enlister: string;
+  posterPath: string;
+  votes: string;
+}
+
+interface ChartData extends BlockchainMovie {
+  movieID: number;
+}
 export interface SearchQueryResult {
   page: number;
   total_pages: number;

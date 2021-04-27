@@ -10,7 +10,7 @@ const Context = createContext<SnackbarContext>({
 
 const SnackbarProvider: React.FC = ({ children }) => {
   const [hasMessage, setHasMessage] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("eai");
   const [showMessage, setShowMessage] = useState(false);
   const [type, setType] = useState<variant>("error");
 
@@ -38,7 +38,7 @@ const SnackbarProvider: React.FC = ({ children }) => {
       {hasMessage && (
         <div
           style={{
-            position: "absolute",
+            position: "fixed",
             top: 0,
             left: 0,
             width: "100%",

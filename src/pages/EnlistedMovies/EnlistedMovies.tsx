@@ -14,29 +14,31 @@ import MovieModal from "../../components/MovieModal/MovieModal";
 const EnlsitedMovies: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState<MovieDetailed[]>([]);
-  const [imagesLoaded, setImagesLoaded] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(-1);
   const [selectedMovie, setSelectedMovie] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const { contract } = useContext(EthContext);
+  const { contract, state } = useContext(EthContext);
   const { setMessage } = useContext(SnkContext);
   useEffect(() => {
     (async () => {
       // array with the ids of all the enslited movies
       const idArray: number[] = await contract?.methods.getMovies().call();
       // unfortunately, we'll need to make one request for each enlisted movie.
+      const finalMovies: MovieDetailed[] = [];
       for (let id of idArray) {
         try {
           const { data } = await api.get(`/movie/${id}`);
-          setMovies((prevState) => [...prevState, data]);
+          finalMovies.push(data);
         } catch (e) {
           return setMessage(
             "We could not retrieve information for all enlisted movies. Please, refresh your page."
           );
         }
       }
+      setMovies(finalMovies);
       setImagesLoaded(0);
     })();
-  }, [contract?.methods, setMessage]);
+  }, [contract?.methods]);
 
   useEffect(() => {
     if (imagesLoaded >= movies.length) {
@@ -46,9 +48,20 @@ const EnlsitedMovies: React.FC = () => {
 
   return (
     <main>
-      <h1 className="page-title fadeFromTop" style={{ marginBottom: "5rem" }}>
+      <h1
+        className="page-title fadeFromTop"
+        style={{ marginBottom: state !== "voting" ? "5rem" : "1rem" }}
+      >
         ENLISTED MOVIES
       </h1>
+      {state === "voting" && (
+        <p
+          className="page-subtitle fadeFromTop"
+          style={{ textAlign: "center", marginBottom: "5rem" }}
+        >
+          Click on a movie and complete the transaction to vote for it.
+        </p>
+      )}
 
       <div className={clsx("enlisted-movies", loading && "loading")}>
         {loading && (
@@ -81,6 +94,7 @@ const EnlsitedMovies: React.FC = () => {
           <MovieModal
             closeModal={() => setShowModal(false)}
             movieID={selectedMovie}
+            showAction={state === "voting"}
           />
         )}
       </div>

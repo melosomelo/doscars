@@ -29,6 +29,7 @@
   z-index: 999;
 
   background: rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
 }
 
 .movie-modal {
@@ -41,7 +42,7 @@
 
   padding: 2.5rem;
 
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, calc(-50% - 10px));

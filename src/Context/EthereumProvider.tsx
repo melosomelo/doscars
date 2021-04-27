@@ -4,6 +4,7 @@ import { Contract } from "web3-eth-contract";
 import Web3 from "web3";
 import abi from "../abi";
 import { EthereumContext, ContractState } from "../global";
+import { EventData } from "web3-eth-contract";
 import { Context as ErrorContext } from "./SnackbarProvider";
 
 const contractAddress = "0x9DDE5de27904a53767c32fFA462CdBce6F2Faf10";
@@ -19,6 +20,7 @@ const Context = createContext<EthereumContext>({
   participate: () => {},
   state: "enlisting",
   enlistMovie: (n, s) => new Promise((r) => r()),
+  voteForMovie: (id) => new Promise((r) => r()),
 });
 
 const EthereumProvider: React.FC = ({ children }) => {
@@ -62,6 +64,20 @@ const EthereumProvider: React.FC = ({ children }) => {
     })();
   }, []);
 
+  useEffect(() => {
+    if (contract) {
+      contract.events
+        .EnlistingOver()
+        .on("data", (e: EventData) => setState("voting"));
+      contract.events
+        .VotingOver()
+        .on("data", (e: EventData) => setState("wfw"));
+      contract.events
+        .WinnerDeclared()
+        .on("data", (e: EventData) => setState("over"));
+    }
+  }, [contract]);
+
   async function requestAccess() {
     try {
       const [address] = await (web3 as Web3).eth.requestAccounts();
@@ -77,6 +93,15 @@ const EthereumProvider: React.FC = ({ children }) => {
     switch (state) {
       case "enlisting":
         history.push("/enlist");
+        break;
+      case "voting":
+        history.push("/enlisted");
+        break;
+      case "wfw":
+        history.push("/wfw");
+        break;
+      default:
+        history.push("/over");
         break;
     }
   }
@@ -94,6 +119,19 @@ const EthereumProvider: React.FC = ({ children }) => {
     }
   }
 
+  async function voteForMovie(movieID: number) {
+    try {
+      await (contract as Contract).methods
+        .voteForMovie(movieID)
+        .send({ from: account, value: "100000000000000000" });
+      setMessage("Vote registered!", "success");
+    } catch (e) {
+      setMessage(
+        "It was not possible to register your vote for this movie. Please, try again."
+      );
+    }
+  }
+
   return (
     <Context.Provider
       value={{
@@ -107,6 +145,7 @@ const EthereumProvider: React.FC = ({ children }) => {
         participate,
         state,
         enlistMovie,
+        voteForMovie,
       }}
     >
       {children}

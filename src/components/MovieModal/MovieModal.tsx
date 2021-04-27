@@ -30,7 +30,7 @@ const MovieModal: React.FC<Props> = ({ movieID, closeModal, showAction }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  const { state, enlistMovie } = useContext(Context);
+  const { state, enlistMovie, voteForMovie } = useContext(Context);
 
   useEffect(() => {
     document.querySelector("body")?.classList.add("no-scroll");
@@ -48,6 +48,8 @@ const MovieModal: React.FC<Props> = ({ movieID, closeModal, showAction }) => {
   async function onButtonClick() {
     if (state === "enlisting") {
       await enlistMovie(movieID, movie.poster_path);
+    } else if (state === "voting") {
+      await voteForMovie(movieID);
     }
   }
   return (
@@ -128,7 +130,8 @@ const MovieModal: React.FC<Props> = ({ movieID, closeModal, showAction }) => {
                 style={{ marginLeft: "auto", marginTop: "4rem" }}
                 onClick={onButtonClick}
               >
-                Enlist
+                {state === "enlisting" && "Enlist"}
+                {state === "voting" && "Vote"}
               </Button>
             )}
           </div>

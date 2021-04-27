@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { Redirect } from "react-router-dom";
 import Input from "../../components/Input/Input";
 
 import "./styles.css";
 import arrowSVG from "../../assets/images/arrow.svg";
 import api from "../../api";
 import { SearchQueryResult, Movie } from "../../global";
+
+import { Context } from "../../Context/EthereumProvider";
+
 import MoviePoster from "../../components/MoviePoster/MoviePoster";
 import MovieModal from "../../components/MovieModal/MovieModal";
 import Loading from "../../components/Loading/Loading";
@@ -20,6 +24,7 @@ export default function Enlist() {
   const [imagesLoaded, setImagesLoaded] = useState(-1);
   const [showModal, setShowModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(-1);
+  const { state } = useContext(Context);
 
   useEffect(() => {
     (async () => {
@@ -40,6 +45,10 @@ export default function Enlist() {
       setLoading(false);
     }
   }, [imagesLoaded, movies.length]);
+
+  if (state !== "enlisting") {
+    return <Redirect to="/" />;
+  }
 
   return (
     <main className="enlist">

@@ -1,0 +1,46 @@
+.ranking {
+  width: 95%;
+  max-width: 1300px;
+  margin: 4rem auto;
+  overflow-x: auto;
+
+  padding-bottom: 5rem;
+}
+
+.ranking::-webkit-scrollbar {
+  height: 4px;
+}
+
+.ranking::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.top-5 {
+  display: flex;
+  justify-content: space-around;
+  height: 400px;
+  min-width: 570px;
+
+  border-bottom: 4px solid rgba(255, 255, 255, 0.4);
+}
+
+.other-movies {
+  margin-top: 3rem;
+}
+
+.other-movies > p {
+  margin-bottom: 3rem;
+  font-size: 2.2rem;
+  font-weight: 400;
+}
+
+.otr-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.otr-container > .otr {
+  margin-right: 1.5rem;
+  margin-bottom: 2rem;
+}

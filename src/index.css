@@ -109,3 +109,15 @@ a:hover {
   font-size: 2.5rem;
   font-weight: 300;
 }
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main-color) !important;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(177.24deg, #1f1e1e 2.26%, #0c0b0b 89.57%);
+}

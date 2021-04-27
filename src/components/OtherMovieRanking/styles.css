@@ -1,0 +1,14 @@
+.otr.loading > * {
+  visibility: hidden;
+  position: absolute;
+}
+
+.otr {
+  padding: 1rem;
+  border: 3px solid var(--main-color);
+}
+
+.otr > p {
+  font-size: 2rem;
+  font-weight: 400;
+}

@@ -1,0 +1,29 @@
+main.over {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main.over > img {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+  margin-bottom: 2rem;
+
+  animation-delay: 0.25s;
+}
+
+main.over > h2 {
+  font-size: 2.5rem;
+  font-weight: 400;
+
+  margin-bottom: 1.2rem;
+  animation-delay: 0.5s;
+}
+
+main.over > p {
+  font-size: 1.8rem;
+  font-weight: 300;
+  animation-delay: 0.5s;
+}
