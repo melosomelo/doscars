@@ -7,7 +7,7 @@ import { EthereumContext, ContractState } from "../global";
 import { EventData } from "web3-eth-contract";
 import { Context as ErrorContext } from "./SnackbarProvider";
 
-const contractAddress = "0x9DDE5de27904a53767c32fFA462CdBce6F2Faf10";
+const contractAddress = "0x71EEe57902d93982DFDe8A7C34b5d0C12B6958dF";
 
 const Context = createContext<EthereumContext>({
   accessGranted: false,
