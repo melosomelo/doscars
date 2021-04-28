@@ -38,3 +38,19 @@ loading_ and the overall look of the website was pretty good.
 ## Prints 🏞
 
 Here are some gifs showing how the project looks and works :)
+
+### Home page
+
+[![Screenshot-from-2021-04-28-16-47-46.png](https://i.postimg.cc/Wb95KzXq/Screenshot-from-2021-04-28-16-47-46.png)](https://postimg.cc/SJMLYS0m)
+
+### Enlisted Movies
+
+The page that show all the movies that were enlisted for the festival.
+
+[![Screenshot-from-2021-04-28-16-47-51.png](https://i.postimg.cc/5tzp6318/Screenshot-from-2021-04-28-16-47-51.png)](https://postimg.cc/Y4pQPQvS)
+
+### Feed
+
+A live feed that listen to a few events on the blockchain.
+
+[![Screenshot-from-2021-04-28-16-48-01.png](https://i.postimg.cc/0ybVqvBW/Screenshot-from-2021-04-28-16-48-01.png)](https://postimg.cc/75r3gFD0)
