@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 
 import Header from "../Header/Header";
@@ -16,7 +16,6 @@ const Layout: React.FC = ({ children }) => {
   const [showSidedrawer, setShowSidedrawer] = useState(false);
   const sidedrawerRef = useRef<HTMLDivElement | null>(null);
   const { participate } = useContext(Context);
-  const history = useHistory();
 
   const openSidedrawer = () => {
     sidedrawerRef.current?.classList.remove("close");

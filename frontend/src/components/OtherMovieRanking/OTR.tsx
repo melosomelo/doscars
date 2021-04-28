@@ -26,7 +26,7 @@ const OTR: React.FC<Props> = ({
       setMovie(data);
       setLoading(false);
     })();
-  }, []);
+  }, [movieID]);
 
   return (
     <div

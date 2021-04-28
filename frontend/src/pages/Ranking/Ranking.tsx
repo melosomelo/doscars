@@ -3,7 +3,6 @@ import { Context as EthContext } from "../../Context/EthereumProvider";
 
 import Loading from "../../components/Loading/Loading";
 
-import api from "../../api";
 import { BlockchainMovie, ChartData } from "../../global";
 import "./styles.css";
 import MovieChart from "../../components/MovieChart/MovieChart";
