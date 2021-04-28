@@ -8,9 +8,6 @@
   <img src="https://img.shields.io/badge/-react-green?logo=react&style=for-the-badge&logoColor=white&color=61DAFB">
 
 </div>
-
-_Decentralized movie voting system implemented with React and Solidity._
-
 ## About the project 🔍
 
 This is a project I made for a blockchain college course, in which we had to
