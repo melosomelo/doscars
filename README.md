@@ -6,6 +6,8 @@
   <img src = "https://img.shields.io/badge/-solidity-green?logo=solidity&style=for-the-badge&logoColor=white&color=363636" style = "margin-right: 10px;">
 
   <img src="https://img.shields.io/badge/-react-green?logo=react&style=for-the-badge&logoColor=white&color=61DAFB">
+  
+  <img src = "https://img.shields.io/badge/-ethereum-green?logo=ethereum&style=for-the-badge&logoColor=white&color=3C3C3D">
 
 </div>
 
